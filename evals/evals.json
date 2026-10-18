@@ -1,0 +1,74 @@
+{
+  "skill_name": "write-science-well",
+  "evals": [
+    {
+      "id": 1,
+      "name": "revise-cluttered-methods-results",
+      "prompt": "This paragraph from my methods and results section is too dense and my coauthor says it reads badly. Tighten it and make it clearer without changing any of the numbers or the science. Give me something I can paste into Word. The paragraph is in the attached file.",
+      "expected_output": "A paste-ready revision that keeps every number, the model, the data source, and the AIC comparison; shorter sentences, active voice where the actor matters, clutter phrases removed, hedges reduced to one honest hedge, the em dash removed, the bare 'This' given a noun, the one-use acronym spelled out; plus a short change list naming the rule behind each change.",
+      "files": [
+        "evals/files/revise_methods_results_paragraph.txt"
+      ],
+      "expectations": [
+        "revised.txt keeps every number from the source: 2015, 2019, 1,482, 1,536, 0.14, 0.06, 0.22, 0.09, 0.01, 0.17, and both 95% CI ranges",
+        "revised.txt contains no em dash character",
+        "revised.txt is paste-ready: no Markdown headers, bullets, numbering, or code fences",
+        "revised.txt has at most 163 words (75 percent of the 217-word source)",
+        "revised.txt contains none of: 'it should be noted', 'in order to', 'the fact that', 'utilized', 'a number of', 'for the purpose of', 'in terms of', 'by means of'",
+        "revised.txt has no sentence longer than 35 words",
+        "revised.txt has no stacked hedge: none of 'may potentially', 'could possibly', 'potentially suggest'",
+        "revised.txt has no sentence that begins with a bare 'This' followed directly by a verb (for example 'This indicates')",
+        "The acronym HCUP is either spelled out without the abbreviation or defined and then reused; it is not defined for a single use",
+        "response.md includes a change list that names at least three specific rules with an author (Strunk, Zinsser, Alley, or Heard) or a reference file",
+        "The science is unchanged: spatial lag model, maximum likelihood, queen contiguity with first-order neighbors, row standardization, AIC comparison favoring the spatial lag model, direct and indirect effects all remain",
+        "revised.txt adds no claim, interpretation, or attribution that the source paragraph does not make (for example no new policy implication and no re-attribution of the direct and indirect effects to the coefficient)",
+        "Every change listed in the change list corresponds to an actual difference between the source paragraph and revised.txt (no claimed change the source cannot have had)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "draft-introduction-from-notes",
+      "prompt": "Here are my notes for the introduction of a paper (attached). Draft the introduction, about 350 words, as a research article introduction for Environmental Health Perspectives. Keep the placeholder citations as they appear in the notes.",
+      "expected_output": "An introduction of roughly 350 words that moves from the problem (heat deaths among older adults) to the gap (single-city studies, cooling versus wealth pathway unseparated, climate-region heterogeneity untested) to the study's question and design, ending on the contribution; concrete, specific, no throat-clearing opener, no 'one of the most', no literature review, no claims the notes do not contain.",
+      "files": [
+        "evals/files/draft_introduction_notes.txt"
+      ],
+      "expectations": [
+        "revised.txt (the introduction) is between 280 and 420 words",
+        "revised.txt contains at least three of the placeholder citations from the notes ([Author A 2016], [Author B 2019], [Author C 2017], [Author D 2020], [Author E 2018]) and no citation that is not in the notes",
+        "revised.txt states the central question, contrasting a cooling effect with a wealth or socioeconomic effect",
+        "revised.txt names the design in at most three sentences: case-crossover and a second-stage meta-regression",
+        "revised.txt does not open with a throat-clearing formula: no 'In recent years', 'one of the most', 'has attracted increasing attention', 'It is well known'",
+        "revised.txt contains no em dash character",
+        "revised.txt contains no claim, number, or fact absent from the notes (for example no invented death counts, no invented city names beyond those in the notes)",
+        "revised.txt ends on what this study does or asks, not on a literature summary",
+        "revised.txt has no sentence longer than 40 words",
+        "revised.txt contains no placeholder: no '???' and no bracketed text other than the placeholder citations from the notes",
+        "revised.txt keeps a qualifier ('to our knowledge' or equivalent) on any priority claim such as 'the first to', or makes no priority claim"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "diagnose-discussion-section",
+      "prompt": "This is the discussion section of a paper I am coauthoring (attached). Before I rewrite it, tell me what is wrong with it, ranked by importance, and name the writing principle behind each problem. Do not rewrite it yet.",
+      "expected_output": "A ranked list of findings led by the substantive faults (the causal overclaim 'these results prove', the buried effect-modification finding, the generic limitations and 'more research is needed' ending, hedge stacking) before mechanical ones (the 90-word opening sentence, the undefined acronym SES, 'utilization', 'it is also worth noting'); each finding names the principle and its source, quotes the offending text, and says what a fix would do, without rewriting the section.",
+      "files": [
+        "evals/files/diagnose_discussion_section.txt"
+      ],
+      "expectations": [
+        "response.md does not rewrite the section: it contains no rewritten version of any full paragraph of the discussion",
+        "response.md ranks the findings and places the causal overclaim ('these results prove') in the first two findings",
+        "response.md identifies the 'more research is needed' ending as a fault",
+        "response.md identifies that the acronym SES is used in the section without being defined there",
+        "response.md identifies the length or overload of the opening sentence",
+        "response.md identifies hedge stacking (for example 'may possibly', 'could conceivably')",
+        "response.md identifies the generic limitation 'only applicable to the data examined' as adding nothing",
+        "At least five findings each name a writing principle and attribute it to Strunk, Zinsser, Alley, Heard, or a reference file of the skill",
+        "Each finding quotes the offending words from the section",
+        "response.md closes with the two or three changes that matter most",
+        "response.md contains no em dash character",
+        "response.md is at most 1,300 words"
+      ]
+    }
+  ]
+}

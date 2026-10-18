@@ -1,0 +1,14 @@
+Paper: neighborhood greenness and heat-related mortality among adults 65+ in 40 US metropolitan areas, 2010-2020
+Target journal: Environmental Health Perspectives (research article)
+
+Notes for the introduction:
+- heat is the leading weather-related cause of death in the US; older adults most at risk (CDC); mortality rises sharply above the local 95th percentile of daily temperature
+- urban heat island: built-up areas 1-4 C warmer than surroundings; within a metro, tree canopy and vegetation lower surface and air temperatures (remote-sensing studies: [Author A 2016], [Author B 2019])
+- prior epidemiological work links greenness (NDVI) to lower all-cause mortality ([Author C 2017], national cohort), but heat-specific mortality studies are few, single-city (Philadelphia [Author D 2020], Hong Kong [Author E 2018]), and use one greenness measure
+- unclear whether the greenness benefit is a temperature effect (cooling) or a socioeconomic proxy (greener = richer neighborhoods); studies rarely separate them
+- also unclear whether the effect varies across metros with different climates (humid Southeast vs arid Southwest vs temperate Northeast)
+- our study: 40 largest metros, census-tract level, daily deaths 65+ linked to tract; NDVI and tree canopy (two greenness measures); daily temperature from PRISM; 2010-2020
+- design: case-crossover within tract for the heat-mortality association; then a second-stage meta-regression across tracts and metros to test whether the heat effect is smaller in greener tracts, adjusting for tract income, poverty, race/ethnicity composition, and air-conditioning prevalence (from AHS)
+- contribution: first multi-metro, tract-level test of whether greenness reduces heat-mortality risk in older adults; separates the cooling pathway from the socioeconomic pathway; tests climate-region heterogeneity
+- main question to state: does neighborhood greenness reduce heat-related mortality risk in older adults, and if so, is that a cooling effect or a wealth effect?
+- length: about 350 words; EHP wants a short, focused introduction, not a literature review

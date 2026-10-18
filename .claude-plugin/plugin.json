@@ -1,0 +1,14 @@
+{
+  "name": "write-science-well",
+  "displayName": "Write Science Well",
+  "version": "1.0.0",
+  "description": "Write, revise, diagnose, or plan scientific prose the way Strunk, Zinsser, Alley, and Heard teach it: papers, chapters, proposals, theses, abstracts, reviews, and responses to reviewers.",
+  "author": {
+    "name": "geointelmining848",
+    "url": "https://github.com/geointelmining848"
+  },
+  "homepage": "https://github.com/geointelmining848/write-science-well",
+  "repository": "https://github.com/geointelmining848/write-science-well",
+  "license": "MIT",
+  "keywords": ["scientific-writing", "academic-writing", "editing", "revision", "writing", "skill"]
+}

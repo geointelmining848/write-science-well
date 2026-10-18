@@ -1,0 +1,21 @@
+{
+  "name": "write-science-well",
+  "description": "The write-science-well scientific-writing skill, distilled from Strunk, Zinsser, Alley, and Heard.",
+  "owner": {
+    "name": "geointelmining848"
+  },
+  "metadata": {
+    "description": "A single-plugin marketplace for the write-science-well skill.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "write-science-well",
+      "source": "./",
+      "description": "Write, revise, diagnose, or plan scientific prose the way Strunk, Zinsser, Alley, and Heard teach it.",
+      "version": "1.0.0",
+      "category": "writing",
+      "tags": ["scientific-writing", "academic-writing", "editing"]
+    }
+  ]
+}
