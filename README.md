@@ -1,5 +1,7 @@
 # write-science-well
 
+中文说明见文末：[中文说明](#中文说明)
+
 An Agent Skill that teaches an AI assistant to write, revise, diagnose, and plan scientific
 prose the way four books teach it: Strunk's *The Elements of Style*, Zinsser's *On Writing
 Well*, Alley's *The Craft of Scientific Writing*, and Heard's *The Scientist's Guide to
@@ -204,3 +206,144 @@ that file is all the agent sees until it opens a reference.
 MIT, copyright 2026 geointelmining848. The four books belong to their authors and publishers.
 
 Built with Claude Code.
+
+## 中文说明
+
+write-science-well 是一个开放格式的 Agent Skill（遵循 SKILL.md 标准），把四本写作经典的方法教给 AI 助手：Strunk 的《The Elements of Style》、Zinsser 的《On Writing Well》、Alley 的《The Craft of Scientific Writing》和 Heard 的《The Scientist's Guide to Writing》。它帮你起草、修改、诊断和规划科学写作：期刊论文、专著章节、基金申请书、学位论文，以及标题、摘要、投稿信、审稿回复和审稿意见。每一条规则都标明出自哪本书、哪位作者，AI 可以权衡，你也可以核对。
+
+技能本体和参考文件用英文写成，针对的是英文科学写作。你可以用中文提问和下指令，AI 会按你的要求回答；中文稿件可以借用它的文档结构、论证逻辑和修改流程，但句子和用词层面的规则以及信号脚本只针对英文文本。
+
+### 这是什么
+
+一套纯文本写成的方法，不联网，只带一个可选的 Python 脚本。核心内容：
+
+- **四条原则**：读者省力是唯一的衡量；说你要说的，不多说一个字；每个词都要配得上它的位置；事实与推论一线贯通。
+- **四种模式**：起草（Draft，从笔记或结果写新稿）、修改（Revise，改你给的文本）、诊断（Diagnose，按重要性列出问题，不改写）、规划（Plan，动笔前设计文档）。
+- **十三条裁定**：四本书意见相左的地方（限定语、被动语态、第一人称、句首的 However、项目符号、破折号、引言如何结尾、方法部分写多细、结论、重复、标题、术语），每一条都给出理由。
+- **可编辑的个人风格文件**：`references/house-style.md` 记录你自己的固定偏好，默认带一套起始规则，可以删改。
+- **信号脚本**：`scripts/prose_signals.py` 统计句长、被动语态候选、套话、限定语、名词化等，只报数，不下判断。
+- **输出形式**：稿件正文一律给可直接粘贴进 Word 的纯文本，一段一行，不带 Markdown，不用破折号，并注明替换位置；每次修改附修改清单和删除清单。绝不编造数字、引文、结果、论断，也不编造期刊的字数限制。
+
+### 安装（按你用的工具对号入座）
+
+同一个工具里只装一次；装两处会触发两次。
+
+#### Claude Code
+
+Claude Code 2.1.275 及以上版本，一条命令装为插件：
+
+```
+/plugin install write-science-well --marketplace geointelmining848/write-science-well
+```
+
+旧版本先添加 marketplace 再安装：
+
+```
+/plugin marketplace add geointelmining848/write-science-well
+/plugin install write-science-well@write-science-well
+```
+
+或者装成个人技能，对所有项目生效：
+
+```bash
+git clone https://github.com/geointelmining848/write-science-well ~/.claude/skills/write-science-well
+```
+
+Windows 对应路径：`%USERPROFILE%\.claude\skills\write-science-well`。装完新开一个会话。更新时在该目录运行 `git pull`。
+
+#### Codex CLI、Cursor、Kimi Code 等
+
+用 `skills` 安装器，它会把技能放进你指定的工具（或它检测到的所有工具）的技能目录：
+
+```bash
+npx skills add geointelmining848/write-science-well
+```
+
+也可以手动复制：把本仓库 clone 到工具读取的技能目录下，文件夹名保持 `write-science-well`。Codex 读 `~/.codex/skills/` 和 `~/.agents/skills/`，Kimi Code 读 `~/.kimi-code/skills/` 和 `~/.agents/skills/`，Cursor 读 `~/.cursor/skills/`。
+
+#### OpenClaw
+
+```bash
+openclaw skills install git:geointelmining848/write-science-well
+```
+
+或者先把仓库 clone 到本地再安装：`openclaw skills install ./write-science-well` 装进当前 workspace，加 `--global` 装进 `~/.openclaw/skills`，对所有 agent 生效。
+
+#### claude.ai / Claude 桌面版
+
+下载本仓库 zip（Code，然后 Download ZIP），打开 Settings，进入 Capabilities，再进入 Skills，上传 zip。
+
+装好后在对话里直接用；信号脚本需要代码沙箱才能运行。
+
+#### 千问办公（QwenWork）
+
+任选其一：
+
+1. **对话式安装（最简单）**：把仓库链接发给千问办公，说一句：
+   ```
+   请帮我把 https://github.com/geointelmining848/write-science-well 下载并放到 ~/.qwenworkcn/skills/ 目录
+   ```
+   它会自动完成克隆、放置和加载。
+2. **手动上传**：左侧导航「扩展」，进入「技能」，点「安装技能」，上传 `SKILL.md`、`references/` 和 `scripts/` 文件夹。
+3. **手动放文件**：解压后把 `write-science-well` 文件夹放进 `~/.qwenworkcn/skills/`（Windows：`C:\Users\你的用户名\.qwenworkcn\skills\write-science-well`）。
+
+装好在对话里直接说“帮我改这段方法部分”，或输入 `/` 从技能列表调用。
+
+#### WorkBuddy
+
+解压后把 `write-science-well` 文件夹复制到用户技能目录：
+
+- Windows：`C:\Users\你的用户名\.workbuddy-ai\skills\write-science-well`
+- macOS / Linux：`~/.workbuddy-ai/skills/write-science-well`
+
+部分版本的目录名是 `~/.workbuddy/skills/`，两个路径哪个存在放哪个。复制后新开一个对话即可生效。
+
+#### 其他工具 / 不支持技能的聊天机器人
+
+把 `SKILL.md` 中第二个 `---` 以下的正文复制进你的系统提示词或自定义指令；参考文件在需要时作为附件给它，或告诉它按需读取。
+
+本质是一套方法，任何够强的模型都能照做。
+
+### 用法
+
+装好后自然提问即可，技能会自动触发。中文、英文都行，例如：
+
+- “这是我论文 3.2 节，大约 900 字讲估计策略，合作者说读不下去。请在不改模型设定的前提下精简。”
+- “方法部分该用被动语态吗？导师坚持要用，但我参照的那篇全文用 we。”
+- “先别改写。读一下这段结果部分，按重要性排序告诉我哪里有问题。”
+- “这是我专著一章的摘要。请改得更有力，保留每个论断和术语，给我能直接粘贴进 Word 的版本。”
+- “帮我起草给审稿人 2 的回复。他说 5 km 的阈值武断；我们补做了 3 km 和 8 km 的敏感性分析，结果不变。”
+- “一份 15 页、三个目标的基金申请书，项目描述该怎么组织？”
+
+附上文本或给出文件名。.docx 文件会被提取文字处理，返回可粘贴的纯文本；除非你要求，不会直接改动文件。
+
+### 自定义：个人风格文件
+
+`references/house-style.md` 位于你的即时指令和四本书之间，两者冲突时它说了算。它自带一套在真实论文和章节的修改中总结出来的起始规则：可粘贴的交付格式并注明替换位置、不用破折号、一节不能只有一段、每个例子先介绍再使用、写科学而不是写软件、不给每次提及都挂上“预先设定”之类的标签、直述优于比喻、设计上确定的事不加限定语。
+
+删掉你不认同的，加上你自己的（最好写上理由），再填好最后一节“The author's voice”：哪些是你有意为之、编辑不该动的措辞和习惯。技能的其他部分不需要改。
+
+### 仓库内容
+
+| 文件 | 说明 |
+|---|---|
+| `SKILL.md` | 技能本体：四条原则、四种模式、输出形式、十三条裁定、适用范围、十二问自检清单 |
+| `references/structure.md` | 故事线、IMRaD 各部分、标题、摘要、引言、方法、结果、讨论、申请书、报告、学位论文、专著章节、小标题、强调位置 |
+| `references/paragraphs.md` | 段落统一、主题句、句间衔接、段落长度、正文中的列举 |
+| `references/sentences.md` | 句长、词序、语态、时态、第一人称、代词、平行结构、标点、用法警示表 |
+| `references/words.md` | 套话、限定语、强化词、名词化、具体用词、术语、缩写、文中数字 |
+| `references/revision.md` | 单一目标的修改轮次、模拟读者、删减、朗读、校对 |
+| `references/process.md` | 起笔、保持进度、提纲、恐惧、以英语为外语的写作 |
+| `references/figures-tables-equations.md` | 表、图、图注、图例、文中指引、公式 |
+| `references/review-and-coauthors.md` | 友情审读与正式审稿、回复审稿人、撰写审稿意见、合作者 |
+| `references/house-style.md` | 你自己的固定偏好，自带可编辑的起始规则 |
+| `references/sources.md` | 四本书各自贡献了什么、舍弃了什么、十三条裁定的理由和页码 |
+| `scripts/prose_signals.py` | 只用标准库的信号扫描脚本，支持 txt、Markdown 和 .docx |
+| `evals/` | 三个测试任务及预期行为，Claude Code skill-creator 格式 |
+| `LICENSE` | MIT |
+
+### 测试与许可
+
+这个技能用 Claude Code 的 skill-creator 构建，跑了三轮基准测试：同一组任务，有无技能各跑一遍，由另一个模型按书面断言评分，作者抽查输出。最后一轮 46 条断言，有技能通过 45 条，无技能通过 34 条。测试集很小，评分者是模型，这些数字只能算冒烟测试。更要紧的区别是：每一轮里，没有技能的输出都添加了原文没有的论断；有技能的最后一轮没有。
+
+许可为 MIT，版权 2026 geointelmining848。四本书的版权属于各自的作者和出版社；本技能转述其规则并注明出处，引用了少量短句，不复制任何一本书。
